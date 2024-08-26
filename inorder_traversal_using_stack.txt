@@ -1,0 +1,41 @@
+class Solution {
+  
+    ArrayList<Integer> inOrder(Node root) {
+        
+        Stack<Node> stack = new Stack<Node>();
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        Node node = root;
+        while(true) {
+            
+            // traverse to the extreme left
+            // we use stack so that we have the most recently encountered
+            // node on top
+            if(node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            
+             // if node is null, that means we do not have
+             // to move left any further
+              
+            else {
+            
+            	// if stack is empty, we have processed all elements
+                if (stack.isEmpty())
+                    break;
+                    
+                // since the node is null, we go back
+                // to the previous node and assign it
+                // to node.
+                
+                // we add data to our list
+                // then we again traverse to right subtree.
+                
+                node = stack.pop();
+                result.add(node.data);
+                node = node.right;
+            }
+            
+        }
+        
+        return result;
